@@ -6,8 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hogwarts hacked list assigmentn for Multimedia Design 3rd semester basic Javascript theme.</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,400;1,500&family=Special+Elite&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <header>
+      <h1>HOGWARTS HACKED LIST</h1>
+
+      <section class="h-students">
+        <h5>Total number of students: <span>30</span></h5>
+        <h5>Students displayed: <span>30</span></h5>
+        <div>
+          <img src="./assets/icons/gry.svg" alt="" />
+          <img src="./assets/icons/huf.svg" alt="" />
+          <img src="./assets/icons/rav.svg" alt="" />
+          <img src="./assets/icons/sly.svg" alt="" />
+        </div>
+      </section>
+    </header>
+    <main>
+      <div class="menus">
+        <div>
+          <form action="">
+            <select name="filter" id="filter">
+              <option value="" disabled selected hidden>Filter the students</option>
+              <option value="House">House</option>
+              <option value="Inquisitors">Inquisitors</option>
+              <option value="Prefects">Prefects</option>
+              <option value="Blood status">Blood status</option>
+            </select>
+          </form>
+          <form action="">
+            <select name="sort" id="sort">
+              <option value="" disabled selected hidden>Sort the students</option>
+              <option value="first_name">First name</option>
+              <option value="last_name">Last name</option>
+              <option value="house">House</option>
+            </select>
+          </form>
+        </div>
+        <!-- here goes the seraching field -->
+      </div>
+      <section></section>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>

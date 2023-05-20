@@ -3,6 +3,7 @@
   padding: 0px;
   box-sizing: border-box;
   list-style: none;
+  /* font-size: 18px; */
 }
 
 html {
@@ -15,9 +16,81 @@ a {
 }
 
 :root {
-  --c-green: #2a3b42;
+  --c-bkg: #feecc2;
+  --c-text-1: #2d0103;
+  --c-text-2: #642624;
+  --c-text-3: #6e3e37;
+  --c-text-4: #b9a183;
+  --c-text-5: #cab08f;
+  --c-g: #1a472a;
+  --c-s: #740001;
+  --c-h: #ecb939;
+  --c-r: #222f5b;
+
+  --f-text: "Special Elite", "Montserrat", sans-serif;
+  --f-ui: "Montserrat", sans-serif;
+  --f-uiw: 500;
 }
 
 body {
-  background-color: var(--c-green);
+  background-color: var(--c-bkg);
+}
+
+header {
+  height: 200px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.3;
+  color: var(--c-text-2);
+}
+
+h1 {
+  font-size: 4.209rem;
+  font-family: var(--f-text);
+}
+
+h2 {
+  font-size: 2.441rem;
+  font-family: var(--f-text);
+}
+
+h3 {
+  font-size: 1.953rem;
+  font-family: var(--f-ui);
+}
+
+h4 {
+  font-size: 1.563rem;
+  font-family: var(--f-ui);
+}
+
+h5 {
+  font-size: 1.25rem;
+  font-family: var(--f-ui);
+  font-weight: var(--f-uiw);
+}
+
+.text_small {
+  font-size: 0.75rem;
+  font-family: var(--f-ui);
+}
+
+p {
+  color: var(--c-text-2);
+}
+
+header p {
+  font-family: var(--f-ui);
+  font-weight: var(--f-uiw);
+  /* font-size: 18px; */
+}
+
+/* Styling forms */
+option {
+  padding: 10px;
 }

@@ -34,10 +34,9 @@ a {
 
 body {
   background-color: var(--c-bkg);
-}
-
-header {
-  height: 200px;
+  font-family: var(--f-ui);
+  width: 1000px;
+  margin: auto;
 }
 
 h1,
@@ -52,34 +51,30 @@ h5 {
 h1 {
   font-size: 4.209rem;
   font-family: var(--f-text);
+  padding-top: 100px;
+  text-align: center;
 }
-
 h2 {
   font-size: 2.441rem;
   font-family: var(--f-text);
 }
-
 h3 {
   font-size: 1.953rem;
   font-family: var(--f-ui);
 }
-
 h4 {
   font-size: 1.563rem;
   font-family: var(--f-ui);
 }
-
 h5 {
   font-size: 1.25rem;
   font-family: var(--f-ui);
   font-weight: var(--f-uiw);
 }
-
 .text_small {
   font-size: 0.75rem;
   font-family: var(--f-ui);
 }
-
 p {
   color: var(--c-text-2);
 }
@@ -90,7 +85,108 @@ header p {
   /* font-size: 18px; */
 }
 
+/* HEADER */
+.h-students {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  align-items: center;
+}
+
+.crest-students {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
+
+.crest-wrap {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.crest-wrap img,
+.crest-numbers {
+  grid-column: 1/1;
+  grid-row: 1/1;
+}
+.crest-numbers {
+  color: white;
+  grid-column: 1/1;
+  grid-row: 1/1;
+}
+
+/* .crest-numbers {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
 /* Styling forms */
-option {
-  padding: 10px;
+
+select,
+input {
+  color: var(--c-text-2);
+  background-color: var(--c-bkg);
+  font-size: var(--f-uiw);
+  font-weight: var(--f-uiw);
+  padding: 8px 12px;
+  border: 3px solid var(--c-text-2);
+}
+
+::placeholder {
+  color: var(--c-text-2);
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 40px;
+}
+
+/* Styling the list */
+
+/* hr {
+  border: 2px solid var(--c-text-2);
+} */
+
+table {
+  width: 100%;
+  border-spacing: 0px;
+  color: var(--c-text-2);
+  text-align: center;
+  font-weight: 600;
+  font-family: var(--f-text);
+}
+
+th {
+  padding: 16px 0px;
+  border-bottom: 2px solid var(--c-text-2);
+  border-right: 2px solid var(--c-text-2);
+  /*  border-bottom-style: double; */
+  border-collapse: collapse;
+}
+
+td {
+  padding: 18px 0px;
+  border-bottom: 2px solid var(--c-text-2);
+  border-right: 2px solid var(--c-text-2);
+  border-top: 2px solid var(--c-text-2);
+  border-collapse: collapse;
+}
+th:last-of-type,
+td:last-of-type {
+  border-right: none;
+}
+
+td:nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.icon-list {
+  max-width: 10%;
 }

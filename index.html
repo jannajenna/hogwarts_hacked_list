@@ -15,7 +15,7 @@
       <h1>HOGWARTS HACKED LIST</h1>
 
       <section class="h-students">
-        <h5>Total number of students: <span>30</span></h5>
+        <h5>Total number of students: <span id="numberofstudents">30</span></h5>
         <h5>Students displayed: <span>30</span></h5>
         <div class="crest-students">
           <div class="crest-wrap">
@@ -59,10 +59,11 @@
             <input type="search" id="search" name="search" placeholder="Serarch for a student" />
           </form>
       <section>
-        <table>
+        <table id="list">
           <thead>
             <tr class="tr-container">
-              <th>STUDENT</th>
+              <th>FIRST NAME</th>
+              <th>LAST NAME</th>
               <th>HOUSE</th>
               <th>BLOOD STATUS</th>
               <th>PREFECT</th>
@@ -72,38 +73,24 @@
           </thead>
           <tbody>
             <!-- the list of students goes here -->
-      <!--       <tr>
-              <td data-field="one">HARRY POTTER</td>
-              <td data-field="one">
-                GRYFFINDOR
-                <img class="icon-list" src="./assets/icons/gry.svg" alt="" />
-              </td>
-              <td data-field="one">PURE</td>
-              <td data-field="one">
-                <img src="./assets/icons/preferct-G.svg" alt="" />
-              </td>
-              <td data-field="one">
-                <img src="./assets/icons/inquisitor.svg" alt="" />
-              </td>
-              <td data-field="one">YES</td>
-            </tr> -->
           </tbody>
         </table>
       </section>
-      <template id="students"> <tr>
-        <td data-field="one">HARRY POTTER</td>
-        <td data-field="one">
-          GRYFFINDOR
-          <img class="icon-list" src="./assets/icons/gry.svg" alt="" />
+      <template id="student"> <tr>
+        <td data-field="firstname">Harry</td>
+        <td data-field="lastname">Potter</td>
+        <td data-field="house">
+          Gryffindor
+          <img class="icon-list" src="./assets/icons/gry.svg" alt="house crest" />
         </td>
-        <td data-field="one">PURE</td>
-        <td data-field="one">
-          <img src="./assets/icons/preferct-G.svg" alt="" />
+        <td data-field="blood">Blood Status</td>
+        <td data-field="prefect">
+          <img src="./assets/icons/preferct-G.svg" alt="is a prefect" />
         </td>
-        <td data-field="one">
-          <img src="./assets/icons/inquisitor.svg" alt="" />
+        <td data-field="inquisitor">
+          <img src="./assets/icons/inquisitor.svg" alt="is an inquisitor" />
         </td>
-        <td data-field="one">YES</td>
+        <td data-field="expelled">Yes</td>
       </tr></template>
     </main>
     <script src="script.js"></script>

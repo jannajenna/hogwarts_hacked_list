@@ -129,7 +129,7 @@ function prepareStudent(jsonObject) {
     return student;
 }
 
-//------FUNCTIoNS THAT FIX THE DATA ------//
+//------FUNCTIONS THAT FIX THE DATA ------//
 //Function capitalization
 function capitalize(string) {
     const capi = string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
@@ -141,9 +141,12 @@ function prepareStatus(bloodData) {
     halfStatus = bloodData.half;
     console.log("PURE:", pureStatus);
     console.log("HALF:", halfStatus);
-}
-function bloodStatus(student) {
 
+    // Update blood status for each student
+    allStudents.forEach(bloodStatus);
+}
+//Determine status
+function bloodStatus(student) {
     if (pureStatus.includes(student.lastName)) {
         student.blood = "Pure blood";
     } else if (halfStatus.includes(student.lastName)) {
@@ -151,8 +154,6 @@ function bloodStatus(student) {
     } else {
         student.blood = "Muggle";
     }
-
-    return student
 }
 
 //------THE LIST------//

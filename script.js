@@ -10,14 +10,14 @@ document.addEventListener("DOMContentLoaded", start);
 let allStudents = [];
 let pureStatus = [];
 let halfStatus = [];
+
 /* 
-let pureBlood = [];
-let halfBlood = [];
 let expelled = [];
 let prefects = [];
 let inquisitors = [];
+let filtered =[];
 */
-//OBJECT PROTOTYPE STUDENTS DATA
+//------OBJECT PROTOTYPE STUDENTS DATA------//
 const Student = {
     firstName: "",
     middleName: "",
@@ -35,14 +35,17 @@ const Student = {
     */
 };
 
-//LOAD JSON
+//------LOAD JSON ------//
 async function start() {
     console.log("ready");
     await loadStudentJSON();
     await loadBloodJSON();
+
+    // Add event-listeners to filter and sort buttons
+    registerForm()
 }
 
-//FETCH AND LOAD JSONDATA
+//------FETCH AND LOAD JSONDATA ------//
 async function loadStudentJSON() {
     const resp = await fetch(studentsURL);
     const data = await resp.json();
@@ -60,14 +63,20 @@ async function loadBloodJSON() {
 }
 
 
-//PREPARE JSONDATA
+//------PREPARE JSONDATA ------//
 function prepareStudents(data) {
     allStudents = data.map(prepareStudent)
+
     //display list
-    displayList(allStudents)
+    /* settings.currentStudents = allStudents;
+    displayList(currentStudents); */
+    buildList();
+
+    //Display number of students
+    document.querySelector("#numberofstudents").textContent = allStudents.length;
 }
 
-//CLEAN DATA AND CREATE STUDENT OBJECT
+//------CLEAN DATA AND CREATE STUDENT OBJECT------//
 function prepareStudent(jsonObject) {
     //create object
     const student = Object.create(Student)
@@ -120,25 +129,19 @@ function prepareStudent(jsonObject) {
         } */
 
     //Blood status
-    /* bloodStatus(student); */
-    if (pureStatus.includes(student.lastName)) {
-        student.blood = "Pure blood";
-    } else if (halfStatus.includes(student.lastName)) {
-        student.blood = "Half blood";
-    } else {
-        student.blood = "Hello";
-    }
-    //Add the object to the global array
-    allStudents.push(student);
+    bloodStatus(student);
+
     return student;
 }
-/* FUNCTIoNS THAT FIX THE DATA */
+
+
+//
+//------FUNCTIoNS THAT FIX THE DATA ------//
 //Function capitalization
 function capitalize(string) {
     const capi = string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase();
     return capi
 }
-
 //Fuction blood
 function prepareStatus(bloodData) {
     pureStatus = bloodData.pure;
@@ -146,8 +149,8 @@ function prepareStatus(bloodData) {
     console.log("PURE:", pureStatus);
     console.log("HALF:", halfStatus);
 }
+function bloodStatus(student) {
 
-/* function bloodStatus(student) {
     if (pureStatus.includes(student.lastName)) {
         student.blood = "Pure blood";
     } else if (halfStatus.includes(student.lastName)) {
@@ -155,18 +158,132 @@ function prepareStatus(bloodData) {
     } else {
         student.blood = "Muggle";
     }
-} */
+}
 
-/* DISPLAYING THE LIST */
-//function build list 
+//------FILTERING------//
+
+const settings = {
+    filterBy: "all",
+    /* currentStudents: [allStudents], */
+    /* sortBy: "" */
+}
+
+//Register Input fields
+function registerForm() {
+    document.querySelector("#filter").addEventListener("change", selectFilter);
+}
+
+function selectFilter(event) {
+    //get the value of the selected option
+    const filter = event.target.value;
+    console.log(`User selected ${filter}`);
+    //set the filter
+    setFilter(filter);
+}
+
+function setFilter(filter) {
+    settings.filterBy = filter;
+    buildList()
+}
+
+function filterList(filteredList) {
+    //console.log("filterList");
+    /* settings.currentStudents = filteredList; */
+
+    settings.filterBy = filteredList;
+    if (settings.filterBy === "gryffindor") {
+        settings.filterBy = allStudents.filter(isG);
+    }
+    if (settings.filterBy === "ravenclaw") {
+        settings.filterBy = allStudents.filter(isR);
+    }
+    if (settings.filterBy === "hufflepuff") {
+        settings.filterBy = allStudents.filter(isH);
+    }
+    if (settings.filterBy === "slytherin") {
+        settings.filterBy = allStudents.filter(isS);
+    }
+
+    return filteredList
+}
+
+//filter Gryffindor
+function isG(student) {
+    return student.house === "Gryffindor"
+    /* if (student.house === "Gryffindor") {
+      return true;
+    }
+    return false; */
+}
+//filter Ravenclaw
+function isR(student) {
+    return student.house === "Ravenclaw"
+    /*  if (student.house === "Ravenclaw") {
+       return true;
+     }
+     return false; */
+}
+//filter Hufflepuff
+function isH(student) {
+    return student.house === "Hufflepuff"
+    /* if (student.house === "Hufflepuff") {
+      return true;
+    }
+    return false; */
+}
+//filter Slytherin
+function isS(student) {
+    return student.house === "Slytherin"
+    /*  if (student.house === "Slytherin") {
+       return true;
+     }
+     return false; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//------THE LIST------//
+
+//function build list
+function buildList() {
+    const currentList = filterList(allStudents);
+    /* const sortedList = sortList(currentList); */
+
+    displayList(currentList);
+}
+
+//function display list 
 function displayList(students) {
+    console.log("display list");
     //clear the list
     document.querySelector("#list tbody").innerHTML = "";
 
     //build a new list
     students.forEach(displayStudent);
 }
-
+//Display list
 function displayStudent(student) {
     //create clone
     const clone = document.querySelector("template#student").content.cloneNode(true);
@@ -184,8 +301,13 @@ function displayStudent(student) {
      clone.querySelector("[data-field=expelled]").textContent = student.expelled; */
 
     //number of students total
-    document.querySelector("#numberofstudents").textContent = allStudents.length;
 
+    /*    document.querySelector("#numberstudentsdisplayed").textContent = allStudents.length;
+   
+       function updateStudentAmount() {
+           document.querySelector("#nonexpelled").textContent = fineStudents.length;
+           document.querySelector("#expelled").textContent = expelledStudents.length;
+         } */
     //MODAL 
 
     /*  clone.querySelector(".open").addEventListener("click", () => {
@@ -244,4 +366,7 @@ function displayStudent(student) {
     // append clone to list
     document.querySelector("#list tbody").appendChild(clone);
 }
+
+
+
 

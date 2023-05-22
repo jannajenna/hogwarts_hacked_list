@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hogwarts hacked list assigmentn for Multimedia Design 3rd semester basic Javascript theme.</title>
+    <title>Hogwarts hacked list assignment for Multimedia Design 3rd semester basic Javascript theme.</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,23 +16,23 @@
 
       <section class="h-students">
         <h5>Total number of students: <span id="numberofstudents">30</span></h5>
-        <h5>Students displayed: <span>30</span></h5>
+        <h5>Students displayed: <span id="numberstudentsdisplayed">30</span></h5>
         <div class="crest-students">
           <div class="crest-wrap">
             <img src="./assets/icons/gry.svg" alt="Gryffindor red crest with number of students in the house" />
-            <h5 class="crest-numbers">99</h5>
+            <h5 class="crest-numbers" id="numbersG">99</h5>
           </div>
           <div class="crest-wrap">
             <img src="./assets/icons/huf.svg" alt="Hufflepuff yellow crest with number of students in the house" />
-            <h5 class="crest-numbers">99</h5>
+            <h5 class="crest-numbers" id="numbersH">99</h5>
           </div>
           <div class="crest-wrap">
             <img src="./assets/icons/rav.svg" alt="Ravenclaw blue crest with number of students in the house" />
-            <h5 class="crest-numbers">99</h5>
+            <h5 class="crest-numbers" id="numbersR">99</h5>
           </div>
           <div class="crest-wrap">
             <img src="./assets/icons/sly.svg" alt="Slytherin green crest with number of students in the house" />
-            <h5 class="crest-numbers">99</h5>
+            <h5 class="crest-numbers" id="numbersS">99</h5>
           </div>
         </div>
       </section>
@@ -41,23 +41,29 @@
       <div class="menus">
         <div>
           <form action="">
-            <div class="form-fs-container"> 
+            <div class="form-fs-container">
               <select name="filter" id="filter">
-              <option value="" disabled selected hidden>Filter the students</option>
-              <option value="house">House</option>
-              <option value="inquisitors">Inquisitors</option>
-              <option value="prefects">Prefects</option>
-              <option value="blood-status">Blood status</option>
-            </select>
-            <select name="sort" id="sort">
-              <option value="" disabled selected hidden>Sort the students</option>
-              <option value="first_name">First name</option>
-              <option value="last_name">Last name</option>
-              <option value="house">House</option>
-            </select>
-          </div>
+                <option value="" disabled selected hidden>Filter the students</option>
+                <option value="all">All</option>
+                <option value="gryffindor">Gryffindor</option>
+                <option value="hufflepuff">Hufflepuff</option>
+                <option value="ravenclaw">Ravenclaw</option>
+                <option value="slytherin">Slytherin</option>
+              </select>
+              <select name="sort" id="sort">
+                <option value="" disabled selected hidden>Sort the students</option>
+                <option value="first_name_az">First name (a-z)</option>
+                <option value="first_name_za">First name (z-a)</option>
+                <option value="last_name_az">Last name (a-z)</option>
+                <option value="last_name_za">Last name (z-a)</option>
+                <option value="house_az">House (a-z)</option>
+                <option value="house_za">House (z-a)</option>
+              </select>
+            </div>
             <input type="search" id="search" name="search" placeholder="Serarch for a student" />
           </form>
+        </div>
+      </div>
       <section>
         <table id="list">
           <thead>
@@ -68,31 +74,83 @@
               <th>BLOOD STATUS</th>
               <th>PREFECT</th>
               <th>INQUISITOR</th>
-              <th>EXPELLED</th>
+              <!-- <th>EXPELLED</th> -->
             </tr>
           </thead>
-          <tbody>
+          <tbody class="list">
             <!-- the list of students goes here -->
           </tbody>
         </table>
+        <div class="overlay"></div>
       </section>
-      <template id="student"> <tr>
-        <td data-field="firstname">Harry</td>
-        <td data-field="lastname">Potter</td>
-        <td data-field="house">
-          Gryffindor
-          <img class="icon-list" src="./assets/icons/gry.svg" alt="house crest" />
-        </td>
-        <td data-field="blood">Blood Status</td>
-        <td data-field="prefect">
-          <img src="./assets/icons/preferct-G.svg" alt="is a prefect" />
-        </td>
-        <td data-field="inquisitor">
-          <img src="./assets/icons/inquisitor.svg" alt="is an inquisitor" />
-        </td>
-        <td data-field="expelled">Yes</td>
-      </tr></template>
+
+      <!-- Template list -->
+      <template id="student">
+        <tr class="jopen">
+          <td data-field="firstname">Harry</td>
+          <td data-field="lastname">Potter</td>
+          <td data-field="house">
+            Gryffindor
+            <img class="icon-list" src="./assets/icons/gry.svg" alt="house crest" />
+          </td>
+          <td data-field="blood">Blood Status</td>
+          <td data-field="prefect">
+            <p class="hidden">Prefect</p>
+            <img class="hidden prefect" src="./assets/icons/prefect.svg" alt="is a prefect" />
+          </td>
+          <td data-field="inquisitor">
+            <p class="hidden">Inquisitor</p>
+            <img class="hidden inquisitor" src="./assets/icons/inquisitor.svg" alt="is an inquisitor" />
+          </td>
+          <!-- <td data-field="expelled">
+            <p class="hidden">Expelled</p>
+          </td> -->
+        </tr>
+      </template>
+
+      <!-- Modal -->
+
+      <div class="modal hidden" id="modal">
+        <div class="modal-header">
+          <button class="close mclose">&times;</button>
+        </div>
+        <div class="modal-body">
+          <img class="student-photo" id="circle" src="assets/images/granger_h.png" alt="student photo" />
+          <img class="house-crest" src="assets/icons/gry.svg" alt="house crest" />
+          <div class="student-info">
+            <div class="infor-container">
+              <p>First name:</p>
+              <p class="pdecorated firstName">name</p>
+            </div>
+            <div class="infor-container">
+              <p>Middle name:</p>
+              <p class="pdecorated middleName">middle name</p>
+            </div>
+            <div class="infor-container">
+              <p>Last name:</p>
+              <p class="pdecorated lastName">last name</p>
+            </div>
+            <div class="infor-container">
+              <p>Nick name:</p>
+              <p class="pdecorated nickName">nick name</p>
+            </div>
+            <div class="infor-container">
+              <p>House</p>
+              <p class="pdecorated house">House</p>
+            </div>
+            <div class="infor-container">
+              <p>Blood status:</p>
+              <p class="pdecorated blood">blood status</p>
+            </div>
+          </div>
+          <div class="btn-options">
+            <button class="btprefect">Prefect</button>
+            <button class="btninquisitor">Inquisitor</button>
+            <button class="btnexpel">Expel</button>
+          </div>
+        </div>
+      </div>
     </main>
-    <script src="script.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>

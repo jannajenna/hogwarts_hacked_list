@@ -39,6 +39,10 @@ body {
   margin: auto;
 }
 
+img {
+  max-width: 100%;
+}
+
 h1,
 h2,
 h3,
@@ -76,7 +80,12 @@ h5 {
   font-family: var(--f-ui);
 }
 p {
+  font-weight: 600;
   color: var(--c-text-2);
+}
+
+.pdecorated {
+  font-family: var(--f-text);
 }
 
 header p {
@@ -146,6 +155,12 @@ form {
   padding-bottom: 40px;
 }
 
+/* MAIN */
+
+.hidden {
+  display: none;
+}
+
 /* Styling the list */
 
 /* hr {
@@ -189,4 +204,124 @@ td:last-of-type {
  */
 .icon-list {
   max-width: 10%;
+}
+
+/* Modal */
+
+.jopen:hover {
+  text-decoration: underline 3px;
+  font-weight: 700;
+  cursor: pointer;
+}
+#circle {
+  border-radius: 50% 50% 50% 50%;
+  width: 100px;
+  height: 100px;
+  border: 3px solid var(--c-text-2);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* display: none; */
+  border: 4px solid var(--c-s);
+  z-index: 4;
+  background-color: var(--c-bkg);
+  width: 600px;
+  max-width: 80%;
+}
+
+.active {
+  display: initial;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem 1rem 0 1rem;
+}
+
+.close {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: var(--c-bkg);
+  font-size: 3rem;
+  font-weight: 400;
+  padding: 8px;
+  color: var(--c-text-2);
+}
+
+.active-overlay {
+  position: fixed;
+  opacity: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--c-bkg);
+  pointer-events: none;
+}
+
+/* .activeo {
+  pointer-events: none;
+  opacity: 0;
+} */
+
+/* Buttons */
+button {
+  font-family: var(--f-ui);
+  font-weight: var(--f-uiw);
+  background-color: var(--c-bkg);
+  color: var(--c-text-2);
+  border: 2px solid var(--c-text-2);
+  width: auto;
+  padding: 6px 16px;
+}
+
+button:hover {
+  background-color: var(--c-text-2);
+  color: var(--c-bkg);
+}
+
+.modal-body {
+  padding: 0 1rem 1rem 1rem;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 60% 40%;
+  justify-items: center;
+}
+.student-photo {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.house-crest {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+.student-info {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+.infor-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  width: 250px;
+}
+
+.btn-options {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  display: flex;
+  flex-direction: row;
+  column-gap: 1.2rem;
+  align-items: center;
 }

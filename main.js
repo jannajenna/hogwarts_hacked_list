@@ -58,11 +58,11 @@ async function start() {
 //------FETCH AND LOAD JSONDATA ------//
 async function loadStudentJSON() {
     const response = await fetch(studentsURL);
-    const jsonData = await response.json();
+    const data = await response.json();
 
     console.log("student data loaded");
 
-    return jsonData;
+    return data;
 }
 
 //Fetch blood data
@@ -76,9 +76,9 @@ async function loadBloodJSON() {
 
 
 //------PREPARE JSONDATA ------//
-function prepareStudents(jsonData) {
+function prepareStudents(data) {
     // add data into array containing all students
-    allStudents = jsonData.map(prepareStudent)
+    allStudents = data.map(prepareStudent)
     settings.currentList = allStudents;
     console.log("Preparing the data")
 
@@ -282,9 +282,6 @@ function hideModal() {
 
 //Expel students
 function expelStudent(student) {
-    //create if statement to not llow Anna to be expelled
-
-    //expel the rest
     if (student.expelled === false) {
         student.expelled = true;
         const index = settings.currentList.indexOf(student);
@@ -295,11 +292,9 @@ function expelStudent(student) {
         buildList();
         console.log("EXPELLED", expelled);
     } else {
-        console.log("Already expelled")
+        console.log("Already expelled");
         hideModal();
-
     }
-
 }
 
 //Prefect students
@@ -330,7 +325,6 @@ function inquisitorStudent(student) {
         }
     }
 }
-
 
 //Register form fields
 function registerInputFields() {
@@ -384,17 +378,23 @@ function filterList(filteredList) {
     if (settings.filterBy === "slytherin") {
         settings.currentList = allStudents.filter(isS);
     }
-    // filtering by roles
-    /* if (settings.filterBy === "inquisitor") {
-        settings.currentList = allStudents.filter(isInquisitor);
-    } */
-    /*   if (settings.filterBy === "prefect") {
-          settings.currentList = allStudents.filter(isPrefect);
-      } */
-    // filtering by expelled students / non-expelled students
-    /*  if (settings.filterBy === "expelled") {
-         settings.currentList = expelledStudents;
-     } */
+
+    //prefects
+    if (settings.filterBy === "prefects") {
+        settings.currentList = allStudents.filter(isP);
+    }
+    //inquisitors
+    if (settings.filterBy === "inquisitors") {
+        settings.currentList = allStudents.filter(isI);
+    }
+    //expelled false
+    if (settings.filterBy === "noexpelled") {
+        settings.currentList = allStudents.filter(isNe);
+    }
+    //expelled true
+    if (settings.filterBy === "expelled") {
+        settings.currentList = allStudents.filter(isE);
+    }
 
     return settings.currentList;
 }
@@ -430,6 +430,21 @@ function isS(student) {
        return true;
      }
      return false; */
+}
+//filter Prefect
+function isP(student) {
+    return student.prefect === true
+}
+//filter Inquisitors
+function isI(student) {
+    return student.isquad === true
+}
+//filter Expelled
+function isNe(student) {
+    return student.isquad === false
+}
+function isE(student) {
+    return student.isquad === true
 }
 
 

@@ -17,6 +17,7 @@
       <section class="h-students">
         <h5>Total number of students: <span id="numberofstudents">30</span></h5>
         <h5>Students displayed: <span id="numberstudentsdisplayed">30</span></h5>
+        <h5>Students expelled: <span id="numberstudentsexpelled">30</span></h5>
         <div class="crest-students">
           <div class="crest-wrap">
             <img src="./assets/icons/gry.svg" alt="Gryffindor red crest with number of students in the house" />
@@ -43,7 +44,7 @@
           <form action="">
             <div class="form-fs-container">
               <select name="filter" id="filter">
-                <option value="" disabled selected hidden>Filter the students</option>
+                <option value="all" disabled selected hidden>Filter the students</option>
                 <option value="all">All</option>
                 <option value="gryffindor">Gryffindor</option>
                 <option value="hufflepuff">Hufflepuff</option>
@@ -119,8 +120,14 @@
           <button class="close mclose">&times;</button>
         </div>
         <div class="modal-body">
-          <img class="student-photo" id="circle" src="assets/images/granger_h.png" alt="student photo" />
-          <img class="house-crest" src="assets/icons/gry.svg" alt="house crest" />
+          <div class="images_modal">
+            <img class="student-photo" id="circle" src="assets/images/granger_h.png" alt="student photo" />
+            <img class="house-crest" src="assets/icons/gry.svg" alt="house crest" />
+            <div class="icons_modal">
+              <img class="modal_prefect hidden" src="./assets/icons/prefect.svg" alt="is a prefect" />
+              <img class="modal_inquisitor hidden" src="./assets/icons/inquisitor.svg" alt="is an inquisitor" />
+            </div>
+          </div>
           <div class="student-info">
             <div class="infor-container">
               <p>First name:</p>
@@ -147,14 +154,17 @@
               <p class="pdecorated blood">blood status</p>
             </div>
           </div>
-          <div class="btn-options">
-            <button class="btprefect">Prefect</button>
-            <button class="btninquisitor">Inquisitor</button>
-            <button class="btnexpel">Expel</button>
+          <div class="options_modal">
+            <div class="btn-options">
+              <button class="btprefect">Prefect</button>
+              <button class="btninquisitor">Inquisitor</button>
+              <button class="btnexpel">Expel</button>
+            </div>
+            <p class="text_expelled hidden">This student is expelled</p>
           </div>
         </div>
       </div>
     </main>
-    <script src="main.js"></script>
+    <script src="java.js"></script>
   </body>
 </html>
